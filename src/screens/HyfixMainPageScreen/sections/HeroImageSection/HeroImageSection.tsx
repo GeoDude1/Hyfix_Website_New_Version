@@ -45,12 +45,12 @@ export const HeroImageSection = (): JSX.Element => {
       {/* Headline and CTA over video, bottom-left aligned */}
       <div className="relative z-10 w-full h-full flex items-end justify-start">
         <div className="w-full max-w-5xl pl-4 pr-4 md:pl-16 md:pr-8 pb-16 md:pb-24 flex flex-col items-start gap-2 md:gap-4 text-left">
-          <h1 className="[font-family:'Hind',Helvetica] font-bold text-white text-xl sm:text-3xl md:text-4xl lg:text-5xl tracking-tight leading-[1.15] animate-fade-in opacity-0 [--animation-delay:200ms]">
-            Introducing the<br />Autonomous Systems Chip
+          <h1 className="[font-family:'Hind',Helvetica] font-bold text-white text-lg sm:text-xl md:text-2xl lg:text-3xl tracking-tight leading-tight animate-fade-in opacity-0 [--animation-delay:200ms]">
+            Rebuilding America’s Semiconductor Supply Chain
           </h1>
 
-          <p className="[font-family:'Hind',Helvetica] font-medium text-white/90 text-sm sm:text-base md:text-lg tracking-tight leading-relaxed max-w-2xl animate-fade-in opacity-0 [--animation-delay:400ms]">
-            Built in the USA. Engineered for Autonomous Flight.
+          <p className="[font-family:'Hind',Helvetica] font-medium text-white/90 text-sm sm:text-base md:text-lg tracking-tight leading-relaxed max-w-3xl animate-fade-in opacity-0 [--animation-delay:400ms]">
+            HYFIX develops and produces advanced autonomous systems chips in the U.S., partnering with trusted foundries and leveraging mature, high-volume semiconductor processes. By ensuring NDAA compliance from design through fabrication, we provide a secure and scalable foundation for next-generation drone platforms.
           </p>
 
           <button

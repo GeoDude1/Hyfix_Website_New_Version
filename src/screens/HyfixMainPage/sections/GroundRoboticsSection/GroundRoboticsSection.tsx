@@ -1,44 +1,38 @@
+import { useScrollAnimation } from "../../../../hooks/useScrollAnimation";
+
+const groundRoboticsParagraph =
+  "Ground robotics platforms leverage precise, resilient positioning in harsh environments, full-featured motor control, and obstacle avoidance to safely navigate complex, dynamic terrain.";
+
 export const GroundRoboticsSection = (): JSX.Element => {
-  const benefits = [
-    "Centimeter accurate positioning",
-    "Resilient positioning in harsh environments",
-    "Full-featured motor control",
-    "Obstacle avoidance",
-  ];
+  const contentRef = useScrollAnimation();
 
   return (
-    <section className="relative w-full py-8 md:py-16 px-4">
-      <div className="container mx-auto max-w-7xl">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-24 xl:gap-32 items-center">
-          <div className="flex flex-col gap-5 md:gap-8 translate-y-[-1rem] animate-fade-in opacity-0 [--animation-delay:200ms] order-2 lg:order-1">
-            <h2 className="[font-family:'Hind',Helvetica] font-bold text-black text-2xl sm:text-3xl md:text-6xl leading-tight">
-              Ground Robotics
-            </h2>
+    <section className="relative w-full min-h-[70vh] md:min-h-[85vh] flex items-end overflow-hidden">
+      {/* Full-bleed video background */}
+      <div className="absolute inset-0">
+        <video
+          className="w-full h-full object-cover"
+          autoPlay
+          muted
+          loop
+          playsInline
+        >
+          <source src="/applications_4.webm" type="video/webm" />
+        </video>
+        {/* Gradient so text is readable: darker on the right where text sits */}
+        <div className="absolute inset-0 bg-gradient-to-r from-black/20 via-transparent to-black/60 pointer-events-none" />
+      </div>
 
-            <div className="[font-family:'Hind',Helvetica] text-gray-800 text-base sm:text-lg md:text-2xl leading-relaxed space-y-3 md:space-y-6">
-              <p className="font-semibold text-black text-lg md:text-2xl">Benefits:</p>
+      {/* Text overlay on the right */}
+      <div ref={contentRef} className="relative z-10 w-full flex justify-end px-4 py-12 md:py-20">
+        <div className="w-full max-w-md md:max-w-lg lg:mr-12 xl:mr-24 flex flex-col gap-3 md:gap-4 items-start text-left">
+          <h2 className="[font-family:'Hind',Helvetica] font-bold text-white text-xl sm:text-2xl md:text-3xl lg:text-4xl leading-tight drop-shadow-md">
+            Ground Robotics
+          </h2>
 
-              <ul className="space-y-3 md:space-y-5 font-normal">
-                {benefits.map((benefit, index) => (
-                  <li key={index} className="flex items-start gap-4 group/item">
-                    <span className="flex-shrink-0 w-2 h-2 rounded-full bg-blue-500 mt-2.5 group-hover/item:scale-150 group-hover/item:shadow-lg group-hover/item:shadow-blue-400/50 transition-all duration-300"></span>
-                    <span className="group-hover/item:text-black group-hover/item:translate-x-1 transition-all duration-300">{benefit}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-
-          <div className="flex justify-center items-center translate-y-[-1rem] animate-fade-in opacity-0 [--animation-delay:400ms] order-1 lg:order-2 group">
-            <div className="relative w-full max-w-[280px] md:max-w-none mx-auto">
-              <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 to-blue-400/20 rounded-full blur-3xl group-hover:blur-2xl group-hover:scale-110 transition-all duration-700"></div>
-              <img
-                className="w-full max-w-[280px] md:max-w-[600px] md:h-[600px] h-auto object-contain relative z-10 transform group-hover:scale-105 transition-transform duration-700"
-                alt="Verde AI mower"
-                src="https://c.animaapp.com/mlqxi4snA5QXFn/img/verde-ai-mower.png"
-              />
-            </div>
-          </div>
+          <p className="[font-family:'Hind',Helvetica] text-white/95 text-sm sm:text-base md:text-lg leading-relaxed max-w-lg">
+            {groundRoboticsParagraph}
+          </p>
         </div>
       </div>
     </section>

@@ -1,26 +1,17 @@
 import { Button } from "../../../../components/ui/button";
 import { useScrollAnimation } from "../../../../hooks/useScrollAnimation";
 
-const chipFeatures = [
-  "Application CPU",
-  "Flight Controller",
-  "GNSS/RTK",
-  "Radio Processor",
-  "Security Encryption",
-];
-
 export const ChipTechnologySection = (): JSX.Element => {
   const { ref: imageRef, isVisible: imageVisible } = useScrollAnimation({ threshold: 0.2 });
   const { ref: titleRef, isVisible: titleVisible } = useScrollAnimation({ threshold: 0.3 });
   const { ref: featuresRef, isVisible: featuresVisible } = useScrollAnimation({ threshold: 0.2 });
 
   return (
-    <section className="relative w-full py-14 md:py-24 px-6 bg-white">
-      <div className="container mx-auto max-w-7xl">
-        <div className="flex flex-col items-center gap-12">
-          <h2 ref={titleRef} className={`[font-family:'Hind',Helvetica] font-bold text-black text-3xl md:text-4xl lg:text-5xl text-center tracking-tight leading-[1.1] max-w-4xl transition-all duration-1000 ${titleVisible ? 'opacity-100 animate-fade-in-right' : 'opacity-0'}`}>
-            A Chip Built for Precision and Resilience
-          </h2>
+    <section className="relative w-full py-16 md:py-28 px-4 sm:px-6 lg:px-8 bg-white overflow-hidden">
+      <div className="container mx-auto max-w-6xl">
+        <h2 ref={titleRef} className={`[font-family:'Hind',Helvetica] font-bold text-black text-3xl sm:text-4xl md:text-5xl text-center tracking-tight leading-[1.15] max-w-3xl mx-auto mb-14 md:mb-20 transition-all duration-1000 ${titleVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+          Introducing Our Integrated System-on-Chip Solution
+        </h2>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center w-full">
             {/* Image with floating animation */}
@@ -29,8 +20,8 @@ export const ChipTechnologySection = (): JSX.Element => {
                 <div className="absolute inset-0 bg-blue-500/20 blur-3xl rounded-full animate-glow"></div>
                 <img
                   className="relative w-full max-w-[400px] h-auto object-contain animate-float"
-                  alt="Chip dime"
-                  src="https://c.animaapp.com/mlqxi4snA5QXFn/img/h1-chip-dime-v04-1.png"
+                  alt="HYFIX integrated system-on-chip"
+                  src="/chip_image.png"
                 />
               </div>
             </div>
@@ -38,29 +29,19 @@ export const ChipTechnologySection = (): JSX.Element => {
 
             {/* Features */}
             <div ref={featuresRef} className="flex flex-col gap-8">
-              <ul className="flex flex-col gap-6">
-                {chipFeatures.map((feature, index) => (
-                  <li 
-                    key={index}
-                    className={`[font-family:'Hind',Helvetica] flex items-center gap-4 text-xl md:text-2xl font-semibold text-black transition-all duration-700 ${featuresVisible ? 'opacity-100 animate-fade-in-left' : 'opacity-0'}`}
-                    style={{ animationDelay: `${index * 100}ms` }}
-                  >
-                    <div className="w-2 h-2 rounded-full bg-blue-500"></div>
-                    {feature}
-                  </li>
-                ))}
-              </ul>
+              <p className={`[font-family:'Hind',Helvetica] text-lg md:text-xl text-gray-700 leading-relaxed transition-all duration-700 ${featuresVisible ? 'opacity-100 animate-fade-in-left' : 'opacity-0'}`}>
+                Our compact 7&nbsp;mm&nbsp;×&nbsp;7&nbsp;mm chip integrates an application CPU, flight controller, GNSS/RTK positioning, radio, and security in a single package under 3&nbsp;g—enabling next-generation autonomous systems with minimal size and power.
+              </p>
 
               <Button 
                 className={`w-fit px-6 py-4 rounded-full bg-black text-white [font-family:'Hind',Helvetica] font-semibold text-base hover:bg-gray-800 transition-all duration-300 hover:scale-105 ${featuresVisible ? 'opacity-100 animate-fade-in-left' : 'opacity-0'}`}
-                style={{ animationDelay: '500ms' }}
+                style={{ animationDelay: '200ms' }}
                 onClick={() => window.location.href = "mailto:info@hyfix.ai?subject=Request%20Info"}
               >
                 Request Info
               </Button>
             </div>
           </div>
-        </div>
       </div>
     </section>
   );

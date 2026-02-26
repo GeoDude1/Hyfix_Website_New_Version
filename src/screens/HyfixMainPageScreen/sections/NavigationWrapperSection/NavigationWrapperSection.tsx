@@ -3,25 +3,31 @@ import { Link, useLocation } from "react-router-dom";
 import { Button } from "../../../../components/ui/button";
 
 const navigationItems = [
-  { label: "Home", path: "/home" },
+  { label: "Home", path: "/" },
   { label: "Applications", path: "/applications" },
   { label: "About", path: "/about" },
 ];
 
 export const NavigationWrapperSection = (): JSX.Element => {
-  const location = useLocation();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const location = useLocation();
+  const pathname = location.pathname;
 
   const closeMobileMenu = () => setMobileMenuOpen(false);
 
+  const isActive = (path: string) => {
+    if (path === "/") return pathname === "/" || pathname === "/home";
+    return pathname === path;
+  };
+
   return (
     <header className="fixed top-0 left-0 right-0 w-full h-auto z-50 px-4 pt-4">
-      <nav className="relative w-full max-w-[1920px] mx-auto h-auto md:min-h-[88px] md:py-2 px-5 bg-white/70 backdrop-blur-sm rounded-2xl shadow-md translate-y-[-1rem] animate-fade-in opacity-0 border border-white/50 transition-colors duration-300 hover:bg-white focus-within:bg-white hover:border-gray-100 focus-within:border-gray-100 hover:shadow-lg focus-within:shadow-lg">
+      <nav className="relative w-full max-w-[1920px] mx-auto h-auto md:min-h-[88px] md:py-2 px-5 bg-white/70 backdrop-blur-sm rounded-2xl shadow-md border border-white/50 transition-colors duration-300 hover:bg-white focus-within:bg-white hover:border-gray-100 focus-within:border-gray-100 hover:shadow-lg focus-within:shadow-lg">
         <div className="w-full py-2 md:py-0 md:h-full">
           <div className="hidden md:grid md:grid-cols-3 items-center h-full">
-            {/* Logo - Left (dark on white) */}
+            {/* Logo - Left */}
             <div className="flex justify-start">
-              <Link to="/home">
+              <Link to="/" onClick={closeMobileMenu}>
                 <img
                   className="w-[200px] h-[64px] object-contain cursor-pointer hover:opacity-90 transition-opacity duration-300"
                   alt="HYFIX Logo"
@@ -30,21 +36,20 @@ export const NavigationWrapperSection = (): JSX.Element => {
               </Link>
             </div>
 
-            {/* Navigation - Center (dark text) */}
+            {/* Navigation - Center (route links) */}
             <div className="flex items-center justify-center gap-8 lg:gap-12">
               {navigationItems.map((item) => (
                 <Link
                   key={item.label}
                   to={item.path}
+                  onClick={closeMobileMenu}
                   className={`[font-family:'Hind',Helvetica] text-sm lg:text-base tracking-[0.5px] leading-[normal] transition-all cursor-pointer relative group no-underline ${
-                    location.pathname === item.path 
-                      ? "font-semibold text-gray-900" 
-                      : "font-normal text-gray-600 hover:text-gray-900"
+                    isActive(item.path) ? "font-semibold text-gray-900" : "font-normal text-gray-600 hover:text-gray-900"
                   }`}
                 >
                   {item.label}
                   <span className={`absolute bottom-[-8px] left-0 h-[2px] bg-gray-900 transition-all ${
-                    location.pathname === item.path ? "w-full" : "w-0 group-hover:w-full"
+                    isActive(item.path) ? "w-full" : "w-0 group-hover:w-full"
                   }`}></span>
                 </Link>
               ))}
@@ -63,7 +68,7 @@ export const NavigationWrapperSection = (): JSX.Element => {
 
           {/* Mobile: logo + hamburger */}
           <div className="flex md:hidden items-center justify-between min-h-[56px]">
-            <Link to="/home" onClick={closeMobileMenu}>
+            <Link to="/" onClick={closeMobileMenu}>
               <img
                 className="w-[140px] h-[44px] object-contain cursor-pointer hover:opacity-80 transition-opacity"
                 alt="HYFIX Logo"
@@ -101,9 +106,7 @@ export const NavigationWrapperSection = (): JSX.Element => {
                   to={item.path}
                   onClick={closeMobileMenu}
                   className={`[font-family:'Hind',Helvetica] text-base py-3 px-3 rounded-lg transition-colors ${
-                    location.pathname === item.path
-                      ? "font-semibold text-gray-900 bg-gray-100"
-                      : "font-normal text-gray-700 hover:bg-gray-50"
+                    isActive(item.path) ? "font-semibold text-gray-900 bg-gray-100" : "font-normal text-gray-700 hover:bg-gray-50"
                   }`}
                 >
                   {item.label}
